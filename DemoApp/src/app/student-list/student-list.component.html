@@ -1,0 +1,44 @@
+<div class="py-12">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+          <div class="bg-white shadow-md rounded-lg overflow-hidden">
+
+              <div class="p-4">
+                  <a href="/students/add" class="cursor-pointer bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-300" title="Add New Teacher">
+                      <i class="fa fa-plus" aria-hidden="true"></i> Add New
+                  </a>
+                  <br /><br />
+                  <div class="overflow-x-auto">
+                      <table class="min-w-full bg-white">
+                          <thead class="bg-gray-800 text-white">
+                              <tr>
+                                  <th class="w-2/12 py-2 px-3 text-left">Name</th>
+                                  <th class="w-3/12 py-2 px-3 text-left">age</th>
+                                  <th class="w-2/12 py-2 px-3 text-left">grade</th>
+                                  <th class="w-2/12 py-2 px-3 text-left">Actions</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr class="border-b" *ngFor="let student of students">
+                                  <td class="py-2 px-3">{{ student.name }}</td>
+                                  <td class="py-2 px-3">{{ student.age }}</td>
+                                  <td class="py-2 px-3">{{ student.grade }}</td>
+                                  <td class="py-2 px-3 flex gap-3">
+                                      <a href="#" title="Edit Teacher" class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-700 transition duration-300">
+                                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+                                      </a>
+                                      <form method="POST" action="#" class="inline">
+                                          <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 transition duration-300" title="Delete Student" onclick="return confirm('Confirm delete?')">
+                                              <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                                          </button>
+                                      </form>
+                                  </td>
+                              </tr>`
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
