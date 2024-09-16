@@ -36,11 +36,16 @@ export class StudentListComponent implements OnInit {
     this.resetForm();
   }
   onEdit(item: Student) {
-    this.studentService.editStudent(item);
-    this.studentsList = this.studentService.getStudents();
-    this.resetForm();
+    this.studentObj = { ...item };
   }
 
+  editStudent() {
+    if (this.studentObj) {
+      this.studentService.editStudent(this.studentObj);
+      this.studentsList = this.studentService.getStudents();
+      this.resetForm();
+    }
+  }
 
   resetForm() {
     this.studentObj = {

@@ -23,23 +23,24 @@
                 </tr>
               </thead>
               <tbody>
-                @for (item of studentsList; track $index){
+                @if (studentsList.length !== 0 ) { @for (item of studentsList;
+                track $index){
 
                 <tr class="border-b">
                   <td class="py-2 px-3">{{ item.name }}</td>
                   <td class="py-2 px-3">{{ item.mobileNo }}</td>
                   <td class="py-2 px-3">{{ item.email }}</td>
                   <td class="py-2 px-3 flex gap-3">
-                    <a
+                    <button
                       data-modal-target="edit-modal"
                       data-modal-toggle="edit-modal"
                       (click)="onEdit(item)"
                       title="Edit student"
                       class="cursor-pointer bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-700 transition duration-300"
                     >
-                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      <i class="fas fa-pencil-alt" aria-hidden="true"></i>
                       Edit
-                    </a>
+                    </button>
                     <form method="POST" action="#" class="inline">
                       <button
                         type="submit"
@@ -47,10 +48,15 @@
                         title="Delete Student"
                         onclick="return confirm('Confirm delete?')"
                       >
-                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                         <i class="fa fa-trash" aria-hidden="true"></i> Delete
                       </button>
                     </form>
                   </td>
+                </tr>
+                } }@else {
+
+                <tr class="text-center w-full">
+                  <td colspan="6" class="py-12">No Record Found</td>
                 </tr>
                 }
               </tbody>
@@ -385,7 +391,7 @@
                   </div>
                   <button
                     type="submit"
-                    (click)="saveStudent()"
+                    (click)="editStudent()"
                     class="w-full text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800"
                   >
                     Save
