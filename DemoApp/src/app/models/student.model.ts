@@ -1,6 +1,9 @@
 export interface Student {
-  id: number;
   name: string;
-  age: number;
-  grade: string;
+  mobileNo: string;
+  email: string;
+  city: string;
+  state: string;
+  pincode: string;
+  address: string;
 }

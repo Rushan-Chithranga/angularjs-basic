@@ -1,28 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Student } from '../models/student.model';
 import { CommonModule } from '@angular/common';
-import { StudentService } from '../services/student.dervice';
+import { StudentService } from '../services/student.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.css'
+  styleUrl: './student-list.component.css',
 })
-export class StudentListComponent {
-  students: Student[] = [];
+export class StudentListComponent implements OnInit {
+  studentObj: Student = {
+    name: '',
+    mobileNo: '',
+    email: '',
+    city: '',
+    state: '',
+    pincode: '',
+    address: '',
+  };
+
+  studentsList: Student[] = [];
 
   constructor(private studentService: StudentService) {}
 
   ngOnInit() {
-    this.studentService.getStudents().subscribe(data => {
-      this.students = data;
-    });
+    this.studentsList = this.studentService.getStudents();
   }
 
-  deleteStudent(id: number) {
-    this.studentService.deleteStudent(id);
-    this.students = this.students.filter(student => student.id !== id);
+  saveStudent() {
+    this.studentService.saveStudent(this.studentObj);
+    this.studentsList = this.studentService.getStudents();
+    this.resetForm();
+  }
+  onEdit(item: Student) {
+    this.studentService.editStudent(item);
+    this.studentsList = this.studentService.getStudents();
+    this.resetForm();
+  }
+
+
+  resetForm() {
+    this.studentObj = {
+      name: '',
+      mobileNo: '',
+      email: '',
+      city: '',
+      state: '',
+      pincode: '',
+      address: '',
+    };
   }
 }
