@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../app/navbar/navbar.component';
-import { StudentAddComponent } from '../app/student-add/student-add.component';
 import { StudentListComponent } from '../app/student-list/student-list.component';
+import { initFlowbite } from 'flowbite';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    FormsModule,
     NavbarComponent,
-    StudentAddComponent,
     StudentListComponent,
   ],
   templateUrl: './app.component.html',
@@ -18,5 +19,12 @@ import { StudentListComponent } from '../app/student-list/student-list.component
 })
 export class AppComponent {
   title = 'DemoApp';
+
+
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }
+
+
 
